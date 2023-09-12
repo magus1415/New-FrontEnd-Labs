@@ -44,7 +44,16 @@ Question 1: Driving the speed limit.. ? \n`);
  * 
  * 
  * ↓ YOUR CODE HERE ↓ */
+let speedLimit = 35;
+let mySpeed = 40;
 
+if (mySpeed > speedLimit) {
+   console.log('Slow Down! Mom is mad!')
+} else if (mySpeed == speedLimit) {
+   console.log('Everyone is happy!')
+} else {
+   console.log('Speed up! Dad is mad!')
+}
 
 
 /*-------------------------------------------------------*/
@@ -64,7 +73,14 @@ Question 2: Is it time to wake up for work? \n`);
  * 
  * ↓ YOUR CODE HERE ↓ */
 
+let alarmSet = false;
+let weekDay = true;
 
+if (alarmSet && weekDay) {
+   console.log('Sound Alarm! Time for work!')
+} else {
+   console.log('I can sleep in!')
+}
 
 /*-------------------------------------------------------*/
 
@@ -81,7 +97,14 @@ Question 3: Username & Password \n`);
  *	        - otherwise, print "Admin Access Denied"
  * 
  * ↓ YOUR CODE HERE ↓ */
+let username = 'Timmy456';
+let password = '6789';
 
+if ((username == "Tommy123" && password == "12345") || username == "Timmy456" && password == "6789") {
+   console.log("Admin Login Successful")
+} else {
+   console.log("Admin Access Denied")
+}
 
 
 /*-------------------------------------------------------*/
@@ -102,6 +125,34 @@ Question 4: Student Class \n`);
  * 
  * ↓ YOUR CODE HERE ↓ */
 
+let studentClass
+let studentGrade = 12;
+
+if (studentGrade >= 0 && studentGrade <= 6) {
+   studentClass = 'Elementary'
+   console.log(studentClass);
+} else if (studentGrade == 7 || studentGrade == 8) {
+   studentClass = 'Middle'
+   console.log(studentClass);
+} else {
+   if (studentGrade == 9) {
+      studentClass = 'Freshman'
+      console.log(studentClass);
+   } else if (studentGrade == 10) {
+      studentClass = 'Sophmore'
+      console.log(studentClass);
+   } else if (studentGrade == 11) {
+      studentClass = 'Junior'
+      console.log(studentClass);
+   } else if (studentGrade == 12) {
+      studentClass = 'Senior'
+      console.log(studentClass);
+   } else {
+      studentClass = 'Error'
+      console.log(studentClass);
+   }
+}
+
 
 
 /*-------------------------------------------------------*/
@@ -117,6 +168,20 @@ Question 5: Loops! \n`);
  * 
  * ↓ YOUR CODE HERE ↓ */
 
+// for (let i = 10; i > -11; i--){
+//    console.log(i);
+// }
+
+let text = '';
+let i = 0;
+
+do {
+   i++;
+   if (i % 4 == 0) {
+      console.log(i)
+   }
+}
+while (i < 50)
 
 
 /*-------------------------------------------------------*/
@@ -131,11 +196,11 @@ Question 6: Debugging an infinite loop! \n`);
  * 
  * ↓ YOUR CODE HERE ↓ */
 
-   /*    
-   for (let i = 11; i > 10; i++) { 
-      console.log(i);   
-   } 
-  */
+   
+for (let i = 0; i < 10; i++) { 
+   console.log(i);   
+} 
+
 
 
 
