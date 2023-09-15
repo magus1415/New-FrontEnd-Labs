@@ -50,6 +50,7 @@ PART 2: Using ID or CLASS Selectors:
 
 /* ↓ YOUR CSS CODE HERE ↓  */
 
+
 /* 
 The asterisk (*) selector targets every element on the page. It is called the UNIVERSAL SELECTOR. Using a temporary red border around elements can prove to be helpful with visualizing the CSS box-model. Seeing all of the margins, borders, and padding of all 
 of the elements on the page can help fix issues with spacing too, especially if you're new to CSS. 
@@ -58,7 +59,7 @@ of the elements on the page can help fix issues with spacing too, especially if 
 /* ---UNIVERSAL SELECTOR--- */
 /* OPTIONAL ↓ REMOVE COMMENTS TO SEE RED BORDER:*/
 
-* {
+/* {
   border: 1px solid red;
 }
 
@@ -67,20 +68,26 @@ of the elements on the page can help fix issues with spacing too, especially if 
 html {
   font-family: Calibri, 'Trebuchet MS', sans-serif;
   background: linear-gradient(180deg, #84daf5, #89ffff, #affffa, #ffffff);
+  margin: 1rem 5rem;
 }
-body {
-}
+
+body {}
 
 h1 {
   text-align: center;
+  filter: drop-shadow(2px 2px 1px #0f6a9e);
 }
+
 h2 {
   margin: 4rem auto 1rem auto;
   text-align: center;
 }
+
 p,
 li {
+  font-size: 20px;
 }
+
 ol {
   padding: 20px;
 }
@@ -88,14 +95,25 @@ ol {
 ol li {
   padding: 10px 0;
 }
+
 img {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
+
 }
+
 figcaption {
   text-align: center;
   font-weight: bold;
 }
+
 footer {
   margin: 2rem 0 2rem 0;
+  text-align: center;
 }
 
 /* ---CUSTOM CLASS NAME SELECTORS--- */
@@ -103,30 +121,45 @@ footer {
 .banner-div {
   display: flex;
   justify-content: center;
+  color: rgb(0, 58, 66);
+  flex-direction: column;
 }
+
 #banner-long {
   max-width: 100%;
   height: auto;
 }
+
 #banner-short {
   width: 230px;
+  display: none;
 }
+
 .img-div {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+
 }
 
 .tips-div {
   display: flex;
   flex-wrap: nowrap;
   justify-content: start;
+
 }
+
 .top-places-div {
   max-width: 800px;
   margin: 5rem auto;
   color: rgb(253, 197, 132);
   padding: 1rem 2rem;
+  background-color: rgb(0, 58, 66);
+  border-radius: 1rem;
+
+ /* Step 5: Give the DIV that houses the "Top 5 Places to Visit..." a background color of rgb(0, 58, 66) and a border radius of 1 rem. */
 }
+
 .top-places-div h2 {
   text-align: center;
   margin: 1rem auto;
@@ -143,6 +176,8 @@ footer {
 
 @media only screen and (max-width: 1100px) {
   .tips-div {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -150,19 +185,28 @@ footer {
   body {
     margin: 1rem;
   }
+
   p,
   li {
     font-size: 16px;
   }
+
   .img-div img {
     width: 230px;
   }
+
   .tips-div img {
     width: 230px;
   }
+
   #banner-long {
+    display: none;
   }
+
   #banner-short {
+    display: block;
   }
 }
+
 /* ------------------------- */
+

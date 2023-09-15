@@ -83,27 +83,18 @@ let array1 = [1, 5, 6, 9, 10, 14];
  * 
  * ↓ YOUR CODE HERE ↓ */
 
-console.log('Step 1: ');
-console.log(array1);
+console.log('Step 1: ', array1);
 
-console.log('Step 2: ');
-console.log(array1[2]);
+console.log('Step 2: ', array1[2]);
 
-console.log('Step 3: ');
-console.log(array1[array1.length - 1]);
+console.log('Step 3: ', array1[array1.length - 1]);
 
-console.log('Step 4: ');
 array1.push(16, 3);
-console.log(array1);
+console.log('Step 4: ', array1);
 
-console.log('Step 5: ');
-console.log(array1[2]);
+console.log('Step 5: ', array1[2]);
 
-console.log('Step 6: ');
-console.log(array1[array1.length - 1]);
-
-
-
+console.log('Step 6: ', array1[array1.length - 1]);
 
 
 // Question 4: Todo List
