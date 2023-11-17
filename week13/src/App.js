@@ -72,9 +72,15 @@
 
 /* -- ALL YOUR COMPONENT/STYLE IMPORTS HERE -- */
 import './App.css'
+import Navigation from './Nav'
+import Welcome from './Welcome'
+
 
 function App() {
-  return <div className="App"></div>
+  return <div className="App">
+    <Navigation />
+    <Welcome />
+  </div>
 }
 
 export default App

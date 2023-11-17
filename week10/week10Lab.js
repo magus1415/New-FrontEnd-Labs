@@ -183,10 +183,10 @@ console.log(`-----------Finished------------`)
 const myChangeTextButton = document.getElementById('myChangeTextButton')
 myChangeTextButton.innerHTML = 'Change Text'
 
-
+let textButton = document.createElement('div')
 
 myChangeTextButton.addEventListener('click', () => {
-   let textButton = document.createElement('div')
-   textButton.innerHTML = 'test'
-   let div = document.body.append(textButton)
+   textButton.innerHTML = 'Hello'
+   document.body.append(textButton)
 })
+

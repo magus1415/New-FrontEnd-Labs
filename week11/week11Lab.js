@@ -38,7 +38,14 @@
 	* 
 	* ↓ YOUR CODE HERE ↓ */
 
+let div = $('.put-here');
+let input = $('#input-value');
 
+function replaceTextInDiv() {
+	let newText = input.val();
+	div.text(newText);
+	input.val('');
+}
 
 
 
@@ -49,7 +56,7 @@
 
 /*------------------------------------------------*/
 // Question 2: Before and After 
- 
+
 /* In the HTML file, there is an image of a dog in the DIV with a class name of "dog".  You will programmatically add 2 more images, one before the dog DIV and another image after the dog DIV.
 	* Step 1: Insert a DIV element with an IMAGE nested inside BEFORE the dog DIV. The image should be: <img src='images/fish.png' width='200'>.(See documentation: https://api.jquery.com/before/)
 	* Step 2: Insert a DIV element with an IMAGE nested inside BEFORE the dog DIV. The image should be:<img src='images/cat.png' width='200'>. (See documentation: https://api.jquery.com/after/)
@@ -57,8 +64,10 @@
 	* 
 	* ↓ YOUR CODE HERE ↓ */
 
+let divDogImage = $('.dog');
+divDogImage.before("<div><img src='images/fish.png' width='200'></div>");
+divDogImage.after("<div><img src='images/cat.png' width='200'></div>");
 
-	
 
 
 
@@ -67,18 +76,16 @@
 
 /*-------------------------------------------------*/
 // Question 3: Remove 
- 
-/* In the HTML file, there is are 3 PARAGRAPHS with some random text (Lorem Ipsum). Each paragraph has its own id: "lorem1", "lorem2", or "lorem3".
+
+/* In the HTML file, there are 3 PARAGRAPHS with some random text (Lorem Ipsum). Each paragraph has its own id: "lorem1", "lorem2", or "lorem3".
 	* Step 1: Write some code that will remove the second PARAGRAPH from the page.(See documentation: https://api.jquery.com/remove/)
 	* Step 2: Save after your changes, the second PARAGRAPH should be gone.
 	* 
 	*
 	* ↓ YOUR CODE HERE ↓ */
 
-
-
-
-	
+let lorem2 = $('#lorem2')
+lorem2.remove();
 
 
 
@@ -88,12 +95,12 @@
 // EXAMPLE:
 // Here is a link to an actual public API for random cat facts.
 // As an option, the url can be saved in a variable as a STRING as shown.
-let CATS_API_URL = 'https://catfact.ninja/fact'; 
+let CATS_API_URL = 'https://catfact.ninja/fact';
 
 //This is how to make a GET call using AJAX:
-$.get(CATS_API_URL, (data)=> {
-    console.log(data);
-    $('.cat-facts').append(`<p> ${data.fact} </p>`);
+$.get(CATS_API_URL, (data) => {
+	console.log(data);
+	$('.cat-facts').append(`<p> ${data.fact} </p>`);
 });
 
 //Notice there are 3 parts...
@@ -102,15 +109,20 @@ $.get(CATS_API_URL, (data)=> {
 
 
 /* Instructions:
- 	* Step 1: Make an AJAX call to GET a random joke using this jokes API https://official-joke-api.appspot.com/random_joke.
- 	* Step 2: Using the URL, make an AJAX call to 'GET' a random joke. Print to data returned to the console.  
- 	* Step 3: Print the joke setup to the DOM by prepending it as a PARAGRAPH to the DIV with a class name of "jokes". (See documentation:https://api.jquery.com/prepend/)
- 	* Step 4: Print the joke punchline to the DOM by appending it as a PARAGRAPH to the DIV with a class name of "jokes". Save your changes. (See documentation: https://api.jquery.com/append/)
- 	* 
- 	* 
- 	* ↓ YOUR CODE HERE ↓ */
+	  * Step 1: Make an AJAX call to GET a random joke using this jokes API https://official-joke-api.appspot.com/random_joke.
+	  * Step 2: Using the URL, make an AJAX call to 'GET' a random joke. Print to data returned to the console.  
+	  * Step 3: Print the joke setup to the DOM by prepending it as a PARAGRAPH to the DIV with a class name of "jokes". (See documentation:https://api.jquery.com/prepend/)
+	  * Step 4: Print the joke punchline to the DOM by appending it as a PARAGRAPH to the DIV with a class name of "jokes". Save your changes. (See documentation: https://api.jquery.com/append/)
+	  * 
+	  * 
+	  * ↓ YOUR CODE HERE ↓ */
 
-
+let random_Joke = "https://official-joke-api.appspot.com/random_joke";
+$.get(random_Joke, (data) => {
+	console.log(data);
+	$('.jokes').prepend(`<p> ${data.setup} </p>`);
+	$('.jokes').append(`<p> ${data.punchline} </p>`);
+})
 
 
 
@@ -142,7 +154,7 @@ $.get(CATS_API_URL, (data)=> {
 		  METHOD #1 didn't work for you then, alternatively, try METHOD #2.)
 		------------------------------------------------------
 		METHOD #2 
-	      Watches for the json-server db.json file:
+		  Watches for the json-server db.json file:
 			1. type command: npm init -y
 			2. type command: npm i json-server
 			3. type command: npx json-server --watch db.json
@@ -167,8 +179,18 @@ $.get(CATS_API_URL, (data)=> {
 	*
 	* ↓ YOUR CODE HERE ↓ */
 
+$.get("http://localhost:3000/gradebook/7", (data) => {
+	console.log(data);
+	let result = $(".result");
+	result.text(data.firstname + " " + data.lastname + ", Grade: "  + data.grade + "%");
+})
 
-	
+$.get("http://localhost:3000/gradebook/28", (data) => {
+	console.log(data);
+	$(".new").text(data.firstname + " " + data.lastname + ", Grade: "  + data.grade + "%");
+})
+
+
 
 
 
@@ -181,18 +203,18 @@ $.get(CATS_API_URL, (data)=> {
 //EXAMPLE:
 //The function below is triggered by a click event on the BUTTON element with a class name of "test". It will POST (or add) the the values from the inputs to the db.json file. With the HTML file open in the browser and the db.json file open in your IDE, click on the TEST BUTTON to witness the post being added to the data object. Note: the data id will be assigned automatically.  
 
-$(".test").on("click", function(){
-	
+$(".test").on("click", function () {
+
 	let fname = $('#firstname').val();
 	let lname = $('#lastname').val();
 	let grade = $('#grade').val();
-	
-	$.post("http://localhost:3000/gradebook", 
-			{ 
-					"firstname": fname,
-					"lastname": lname,
-					"grade": grade    
-			}
+
+	$.post("http://localhost:3000/gradebook",
+		{
+			"firstname": fname,
+			"lastname": lname,
+			"grade": grade
+		}
 	);
 
 });
@@ -204,10 +226,30 @@ $(".test").on("click", function(){
 	*
 	* ↓ YOUR CODE HERE ↓ */
 
+	$(".postBtn").on("click", function () {
 
+		let fname = $('#firstname').val();
+		let lname = $('#lastname').val();
+		let grade = $('#grade').val();
+	
+		$.post("http://localhost:3000/gradebook",
+			{
+				"firstname": fname,
+				"lastname": lname,
+				"grade": grade
+			}
+		);
+	
+	});
 
+const API = "http://localhost:3000/gradebook";
 
-
+$.post(API, 
+	{
+		"firstname": first,
+		"lastname": last,
+		"grade": grade
+	})
 
 
 

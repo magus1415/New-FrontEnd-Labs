@@ -36,6 +36,7 @@
  * For step-by-step instruction, check the README.md
  */
 
+
 /*------------------------ Part 1: REST & Fetch ------------------------*/
 
 /**
@@ -48,6 +49,7 @@
  *                      or the CRUD operations will not work. Do not copy the API link in the lab solution.
  *
  * Part 1: Create a new const variable called: API_URL , and set it to your URL.
+ * 
  *
  *         Create 4 functions, getUsers(){}, deleteUser(){}, updateUser(){}, and postNewUser(){}.
  */
@@ -181,16 +183,129 @@
  */
 
 /*-- ALL IMPORTS HERE -- */
-import './App.css'
-
+import './App.css';
+import { useState, useEffect } from 'react';
+import React from 'react';
 function App() {
   /* -- YOUR CODE/CRUD OPERATIONS HERE --*/
+
+  const API_URL = 'https://65455e5a5a0b4b04436dfb22.mockapi.io/week15';
+
+  const [users, setUsers] = useState([{}]);
+  const [newUserName, setNewUserName] = useState('');
+  const [newUserJobTitle, setNewUserJobTitle] = useState('');
+  const [newUserCompanyName, setNewUserCompanyName] = useState('');
+  const [updatedName, setUpdatedName] = useState('');
+  const [updatedJobTitle, setUpdatedJobTitle] = useState('');
+  const [updatedCompanyName, setUpdatedCompanyName] = useState('');
+
+  function getUsers() {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setUsers(data))
+      .catch(error => console.error("error at the fetch section: ", error));
+  }
+
+  useEffect(() => {
+    getUsers()
+    console.log("app.js, console at useEffect function: ", users);
+  }, [])
+
+  function deleteUser(id) {
+    fetch(`${API_URL}/${id}`, {
+      method: 'DELETE'
+    })
+      .then(() => getUsers())
+  }
+
+  function postNewUser(e) {
+    e.preventDefault()
+
+    console.log(newUserCompanyName, newUserJobTitle, newUserName);
+
+    fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: newUserName,
+        jobTitle: newUserJobTitle,
+        companyName: newUserCompanyName,
+      }),
+      headers: { 'Content-Type': 'application/json' }
+      // this triggers a re-render
+    }).then(() => getUsers())
+  }
+
+
+  function updateUser(e, userObject) {
+    e.preventDefault()
+    let updatedUserObject = {
+      ...userObject,
+      name: updatedName,
+      jobTitle: updatedJobTitle,
+      companyName: updatedCompanyName,
+    };
+    fetch(`${API_URL}/${userObject.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedUserObject),
+      headers: { "Content-Type": "application/json" }
+    })
+      // this triggers a re-render
+      .then(() => getUsers())
+  }
 
   return (
     <div className="App">
       {/* CODE BELOW: PART: 5.3 Connecting our POST */}
-
+      <form>
+        <h3>Post new user form</h3>
+        <label>Name</label>
+        <input placeholder='Enter new name'
+          onChange={(e) => setNewUserName(e.target.value)}></input>
+        <label>Job Title</label>
+        <input
+          placeholder='Enter job title'
+          onChange={(e) => setNewUserJobTitle(e.target.value)}></input>
+        <label>Company Name</label>
+        <input
+          placeholder='Enter company'
+          onChange={(e) => setNewUserCompanyName(e.target.value)}></input>
+        <button
+          className='btn-addUser'
+          onClick={(e) => postNewUser(e)}>Add new user</button>
+      </form>
       {/* CODE BELOW: PART 5.1: Connecting our GET  //  PART 5.4: Connecting our UPDATE */}
+      {users.map((user, index) => (
+        <div className='container' key={index}>
+          <div>
+            Name: {user.name} <br></br>
+            Job Title: {user.jobTitle} <br></br>
+            Company Name: {user.companyName} <br />
+            <button
+              className='btn-dlt'
+              onClick={() => deleteUser(user.id)}
+            >
+              Delete
+            </button>
+            <br /><br />
+          </div>
+          <form className='App'>
+            <h3>Update this user</h3>
+
+            <label>Update Name</label>
+            <input onChange={(e) => setUpdatedName(e.target.value)}></input>
+
+            <label>Update Job Title</label>
+            <input onChange={(e) => setUpdatedJobTitle(e.target.value)}></input>
+
+            <label>Update Company Name</label>
+            <input onChange={(e) => setUpdatedCompanyName(e.target.value)}></input>
+            <button
+            onClick={(e) => updateUser(e, user)}
+            className='btn-update'>Update</button>
+          </form>
+        </div>
+      ))}
+
     </div>
   )
 }

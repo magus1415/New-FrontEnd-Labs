@@ -1,0 +1,68 @@
+/**
+ * Step 5: Style your Nav component using the app.css file.
+ *         Give your <nav> element: 100vw
+ *                                  (100 view width makes the width the size of their screen)
+ *         Give your <ul> element: display: flex, flex-direction: row, justify-content: right
+ *         The rest is up to you! Consider pseudo:selectors, such as hover/active/touch
+ *
+ *         Alternatively, refer to Week 9 and use bootstrap instead.
+ *         Remember when we give elements classes in React, we use className=""
+ **/
+
+nav {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 24px;
+    padding: 6px;
+    background-color: rgb(100, 107, 202);
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style-type: none;
+    margin-right: 1em;
+}
+
+nav ul li:hover {
+    color: rgba(0, 0, 0, 0.959);
+    border-bottom: solid;
+    cursor: pointer;
+
+}
+
+nav ul li:active {
+    background-color: rgb(68, 71, 122);
+
+}
+
+h1 {
+    font-size: 4em;
+    color: #1e2e44;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+p {
+    font-size: 2em;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.welcomeSection {
+    text-align: center;
+    background-color: #dcdcdc;
+    word-spacing: 2px;
+    text-transform: uppercase;
+    padding: 1em;
+}
